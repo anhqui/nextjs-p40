@@ -1,5 +1,10 @@
 import "./globals.css";
+import { Rubik } from "next/font/google";
+
+// components
 import Navbar from "./components/Navbar";
+
+const rubik = Rubik({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Help Desk App",
@@ -9,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className={rubik.className}>
         <Navbar />
         {children}
       </body>
