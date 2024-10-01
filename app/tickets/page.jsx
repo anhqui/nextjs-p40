@@ -2,7 +2,7 @@ import TicketList from "./TicketList";
 
 export default function Tickets() {
   return (
-    <div>
+    <main>
       <nav>
         <div>
           <h2>Tickets</h2>
@@ -12,6 +12,6 @@ export default function Tickets() {
         </div>
       </nav>
       <TicketList />
-    </div>
+    </main>
   );
 }
