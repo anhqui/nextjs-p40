@@ -8,6 +8,7 @@ async function getTickets() {
       revalidate: 0, // use 0 to opt out of using cache
     },
   });
+
   return res.json();
 }
 export default async function TicketList() {
