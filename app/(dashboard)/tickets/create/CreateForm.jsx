@@ -18,7 +18,7 @@ export default function CreateForm() {
       body,
       priority,
     };
-    const res = await fetch("http://localhost:3000/api/tickets", {
+    const res = await fetch("/api/tickets", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
