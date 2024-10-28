@@ -27,3 +27,18 @@ export async function addTicket(formData) {
   revalidatePath("/tickets");
   redirect("/tickets");
 }
+
+export async function deleteTicket(id) {
+  // connect supabase
+  const supabase = createServerActionClient({ cookies });
+
+  // delete the data
+  const { error } = await supabase.from("Tickets").delete().eq("id", id);
+  if (error) {
+    throw new Error("Could not delete the new ticket.");
+  }
+
+  // redirect to the tickets page
+  revalidatePath("/tickets");
+  redirect("/tickets");
+}

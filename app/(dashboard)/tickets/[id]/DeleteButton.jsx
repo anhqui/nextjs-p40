@@ -1,40 +1,26 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+
+import { useTransition } from "react";
 
 import { TiDelete } from "react-icons/ti";
+import { deleteTicket } from "../actions";
 
 export default function DeleteButton({ id }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
-
-  const handleDelete = async () => {
-    setIsLoading(true);
-    const res = await fetch(`/api/tickets/${id}`, {
-      method: "DELETE",
-    });
-
-    const result = await res.json();
-    if (result.error) {
-      console.log(error);
-      setIsLoading(false);
-    }
-
-    if (!result.error) {
-      router.refresh();
-      router.push("/tickets");
-    }
-  };
+  const [isPending, startTransition] = useTransition();
 
   return (
-    <button className="btn-primary" onClick={handleDelete} disabled={isLoading}>
-      {isLoading && (
+    <button
+      className="btn-primary"
+      onClick={() => startTransition(() => deleteTicket(id))}
+      disabled={isPending}
+    >
+      {isPending && (
         <>
           <TiDelete />
           Deleting...
         </>
       )}
-      {!isLoading && (
+      {!isPending && (
         <>
           <TiDelete />
           Delete Ticket
