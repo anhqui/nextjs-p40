@@ -19,6 +19,9 @@ export async function addTicket(formData) {
     ...ticket,
     user_email: session.user.email,
   });
+  if (error) {
+    throw new Error("Could not add the new ticket.");
+  }
 
   // redirect to the tickets page
   revalidatePath("/tickets");

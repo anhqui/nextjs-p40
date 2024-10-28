@@ -1,5 +1,3 @@
-"use client";
-
 import SubmitButton from "@/app/components/SubmitButon";
 import { addTicket } from "../actions";
 export default function CreateForm() {
